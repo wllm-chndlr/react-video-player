@@ -68,6 +68,7 @@ class VideoPlayer extends Component {
 
   handleRangeUpdate = (e) => {
     const { name, value } = e.target;
+    // console.log(e.target.value);
     this.setState({
       [name]: value
     });
@@ -75,10 +76,9 @@ class VideoPlayer extends Component {
   }
 
   scrub = (e) => {
+    // console.log(e.nativeEvent);
     const scrubTime =
-      e.nativeEvent.offsetX /
-      this.refs.video.clientWidth *
-      this.refs.video.duration;
+      e.offsetX / this.refs.video.clientWidth * this.refs.video.duration;
     if (!isNaN(scrubTime)) {
       this.refs.video.currentTime = scrubTime;
     }
@@ -98,6 +98,7 @@ class VideoPlayer extends Component {
 
   skip = (e) => {
     const skipAmount = e.target.attributes[0].value;
+    // console.log(e.target.attributes);
     if (!isNaN(skipAmount)) {
       this.refs.video.currentTime += Number(skipAmount);
     }
